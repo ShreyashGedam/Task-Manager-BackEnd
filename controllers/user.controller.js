@@ -14,7 +14,7 @@ const addUser = async (req, res) => {
     const findUser = await usermodel.findOne({ email });
 
     if (findUser)
-      return res.status(400).send({ messsage: "user already exist" });
+      return res.status(409).send({ messsage: "user already exist" });
 
     const user = new usermodel({ name, email, password: hash, role });
     await user.save();
